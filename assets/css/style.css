@@ -35,3 +35,14 @@ header {
     justify-content: space-around;
     width: 100%;
 }
+
+.qBox {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.q-btn {
+    
+}
