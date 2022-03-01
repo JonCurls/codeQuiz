@@ -1,34 +1,32 @@
-var timerEl = document.getElementById("timer");
-var timeLeft = 61; //needs to be 61
+var timeLeft = 60;
+var questionNum = 0;
 var finalScore = 0;
 var leaderboard = [];
+var timerEl = document.getElementById("timer");
 var quizEl = document.getElementById('quiz');
 var quizTitleEl = document.getElementById("question-title");
 var btn = document.getElementById("btn");
+var questionResponse = document.getElementById("question-answer");
 var questionContainerEl = document.createElement("li");
 var questionContainerE2 = document.createElement("li");
 var questionContainerE3 = document.createElement("li");
 var questionContainerE4 = document.createElement("li");
 
-
 //Click event to start
 function countdown() {
-    // leaderboard = localStorage.getItem('objtest2', JSON.stringify(leaderboard));
-    // console.log(leaderboard);
     questionOne();
+
     btn.style.visibility = "hidden";
     var timeInterval = setInterval(function () {
-        timeLeft--;
         timerEl.textContent = "time: " + timeLeft;
-        //if (final question click listener) {
-        // finalScore = timeLeft;
-        //recordScore(finalScore);
-        // clearInterval(timeInterval);
-        // }
-        if (timeLeft === 0) {
-            //recordScore(timeLeft);
+        if (questionNum ===4) {
             clearInterval(timeInterval);
         }
+        if (timeLeft === 0) {
+            recordScore(timeLeft);
+            clearInterval(timeInterval);
+        }
+        timeLeft--;
     }, 1000)
 }
 
@@ -53,9 +51,9 @@ function questionOne() {
     questionContainerEl.appendChild(qTwobutton);
     questionContainerEl.appendChild(qThreebutton);
     questionContainerEl.appendChild(qFourbutton);
-
-
+    
     qOnebutton.addEventListener("click", function () {
+        questionResponse.textContent = "Incorrect";
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
@@ -80,10 +78,10 @@ function questionOne() {
         }
         questionTwo();
     });
-
 }
 
 function questionTwo() {
+    console.log(questionNum);
     questionContainerEl.style.visibility = "hidden";
     questionContainerE2.className = "qBox";
     var qOnebutton = document.createElement("button");
@@ -109,6 +107,7 @@ function questionTwo() {
 }
 
 function questionThree() {
+    console.log(questionNum);
     questionContainerE2.style.visibility = "hidden";
     questionContainerE3.className = "qBox";
     var qOnebutton = document.createElement("button");
@@ -159,6 +158,7 @@ function questionThree() {
 }
 
 function questionFour() {
+    console.log(questionNum);
     questionContainerE3.style.visibility = "hidden";
     questionContainerE4.className = "qBox";
     var qOnebutton = document.createElement("button");
@@ -182,15 +182,12 @@ function questionFour() {
     questionContainerE4.appendChild(qThreebutton);
     questionContainerE4.appendChild(qFourbutton);
 
-    //qOnebutton.addEventListener("click", recordScore);
-
     qOnebutton.addEventListener("click", function () {
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
             recordScore();
         }
-        //finalScore = timeLeft;
         recordScore(timeLeft);
     });
     qTwobutton.addEventListener("click", function () {
@@ -199,7 +196,6 @@ function questionFour() {
             timeLeft = 0;
             recordScore();
         }
-        //finalScore = timeLeft;
         recordScore(timeLeft);
     });
     qThreebutton.addEventListener("click", function () {
@@ -208,27 +204,16 @@ function questionFour() {
             timeLeft = 0;
             recordScore();
         }
-        //finalScore = timeLeft;
         recordScore(timeLeft);
     });
     qFourbutton.addEventListener("click", function () {
-        //finalScore = timeLeft;
         recordScore(timeLeft);
     });
 
 }
 
 function recordScore(timeLeft) {
-    //var tempScore;
-    //finalScore = tempScore;
-    //finalScore = timeLeft;
-    var tempLeader = [];
-    var tempObj = {
-        initals: "",
-        score : ""
-    };
-    
-    timerEl.style.visibility = "hidden";
+    questionNum++;
     questionContainerEl.style.visibility = "hidden";
     questionContainerE2.style.visibility = "hidden";
     questionContainerE3.style.visibility = "hidden";
@@ -236,28 +221,25 @@ function recordScore(timeLeft) {
     quizTitleEl.textContent = "GAME OVER";
     quizEl.textContent = timeLeft;
     
-    tempObj.initals = window.prompt("Initals");
-    tempObj.score = timeLeft;
-    //leaderboard.push('tempObj');
-    tempLeader.score = timeLeft;
-    //console.log(tempLeader);
-    //leaderboard.push(tempLeader);
-    //console.log(leaderboard);
-    console.log(tempObj);
-    tempLeader.push(tempObj);
-    console.log(tempLeader);
-    saveLeaderboard(tempObj);
+    leaderboard.initals = window.prompt("Initals");
+    leaderboard.score = timeLeft;
+    saveLeaderboard();
 }
 
-
-function saveLeaderboard(tempObj) {
-    localStorage.setItem('leaderboard', JSON.stringify(tempObj));
+function saveLeaderboard() {
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
 }
 
-function loadLeaderboard() {
-    var tempLeaderboard = localStorage.getItem("leaderboard");
-    tempLeaderboard = JSON.parse(tempLeaderboard);
-    console.log(tempLeaderboard);
+var loadLeaderboard = function() {
+    leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
+    console.log(leaderboard);
+    //If nothing in localStorage, create new leaderboard obj
+    if(!leaderboard) {
+        leaderboard = {
+            initals: [],
+            score: []
+        };
+    }
 }
 
 btn.addEventListener("click", countdown);

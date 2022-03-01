@@ -21,6 +21,14 @@ header {
     width: 100%;
 }
 
+.qAnswer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    color: black;
+    width: 100%;
+}
+
 .quiz {
     display: flex;
     flex-wrap: wrap;
