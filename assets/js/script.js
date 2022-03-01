@@ -1,7 +1,8 @@
 var timeLeft = 60;
 var questionNum = 0;
 var finalScore = 0;
-var leaderboard = [];
+var leaderboard = {};
+
 var timerEl = document.getElementById("timer");
 var quizEl = document.getElementById('quiz');
 var quizTitleEl = document.getElementById("question-title");
@@ -81,6 +82,7 @@ function questionOne() {
 }
 
 function questionTwo() {
+    questionNum++;
     console.log(questionNum);
     questionContainerEl.style.visibility = "hidden";
     questionContainerE2.className = "qBox";
@@ -107,6 +109,7 @@ function questionTwo() {
 }
 
 function questionThree() {
+    questionNum++;
     console.log(questionNum);
     questionContainerE2.style.visibility = "hidden";
     questionContainerE3.className = "qBox";
@@ -158,6 +161,7 @@ function questionThree() {
 }
 
 function questionFour() {
+    questionNum++;
     console.log(questionNum);
     questionContainerE3.style.visibility = "hidden";
     questionContainerE4.className = "qBox";
@@ -223,25 +227,27 @@ function recordScore(timeLeft) {
     
     leaderboard.initals = window.prompt("Initals");
     leaderboard.score = timeLeft;
+    console.log(leaderboard);
     saveLeaderboard();
 }
 
 function saveLeaderboard() {
-    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+    openScore();
+    var tempLeader = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    tempLeader.push(leaderboard);
+    localStorage.setItem("leaderboard", JSON.stringify(tempLeader));
+    console.log(tempLeader);
 }
 
 var loadLeaderboard = function() {
-    leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
-    console.log(leaderboard);
-    //If nothing in localStorage, create new leaderboard obj
-    if(!leaderboard) {
-        leaderboard = {
-            initals: [],
-            score: []
-        };
-    }
+    var highScore = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    console.log(highScore);
+}
+
+function openScore (){
+    window.open("highscore.html", "_self");
 }
 
 btn.addEventListener("click", countdown);
-
 loadLeaderboard();
+
