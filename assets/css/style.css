@@ -16,9 +16,10 @@ header {
 .page-title {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     color: black;
     width: 100%;
+    align-items: center;
 }
 
 .qAnswer {
@@ -51,6 +52,12 @@ header {
     justify-content: center;
     flex-direction: column;
 }
-.q-btn {
-    
+
+.score-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
 }

@@ -1,4 +1,5 @@
-var timeLeft = 60;
+
+var timeLeft = 6;
 var questionNum = 0;
 var finalScore = 0;
 var leaderboard = {};
@@ -8,16 +9,19 @@ var quizEl = document.getElementById('quiz');
 var quizTitleEl = document.getElementById("question-title");
 var btn = document.getElementById("btn");
 var questionResponse = document.getElementById("question-answer");
+var scoreList = document.getElementById("scoreList")
 var questionContainerEl = document.createElement("li");
 var questionContainerE2 = document.createElement("li");
 var questionContainerE3 = document.createElement("li");
 var questionContainerE4 = document.createElement("li");
+var scoreListEl = document.createElement("li");
 
 //Click event to start
 function countdown() {
     questionOne();
 
     btn.style.visibility = "hidden";
+    quizEl.style.visibility = "hidden";
     var timeInterval = setInterval(function () {
         timerEl.textContent = "time: " + timeLeft;
         if (questionNum ===4) {
@@ -54,34 +58,34 @@ function questionOne() {
     questionContainerEl.appendChild(qFourbutton);
     
     qOnebutton.addEventListener("click", function () {
-        questionResponse.textContent = "Incorrect";
+        quizEl.textContent = "Incorrect";
+        quizEl.style.visibility = "visible";
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
-            recordScore();
         }
-        questionTwo();
     });
     qTwobutton.addEventListener("click", questionTwo);
     qThreebutton.addEventListener("click", function () {
+        quizEl.textContent = "Incorrect";
+        quizEl.style.visibility = "visible";
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
-            recordScore();
         }
-        questionTwo();
     });
     qFourbutton.addEventListener("click", function () {
+        quizEl.textContent = "Incorrect";
+        quizEl.style.visibility = "visible";
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
-            recordScore();
         }
-        questionTwo();
     });
 }
 
 function questionTwo() {
+    quizEl.style.visibility = "hidden";
     questionNum++;
     console.log(questionNum);
     questionContainerEl.style.visibility = "hidden";
@@ -98,17 +102,18 @@ function questionTwo() {
     questionContainerE2.appendChild(qTwobutton);
 
     qOnebutton.addEventListener("click", function () {
+        quizEl.textContent = "Incorrect";
+        quizEl.style.visibility = "visible";
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
-            recordScore();
         }
-        questionThree();
     });
     qTwobutton.addEventListener("click", questionThree);
 }
 
 function questionThree() {
+    quizEl.style.visibility = "hidden";
     questionNum++;
     console.log(questionNum);
     questionContainerE2.style.visibility = "hidden";
@@ -118,7 +123,6 @@ function questionThree() {
     var qThreebutton = document.createElement("button");
     var qFourbutton = document.createElement("button");
     quizTitleEl.textContent = "Question #3. Common js data types include all but which of the following?"
-    //quizEl.innerHTML = "A. String<br />" + "<br />B. Boolean<br />" + "<br />C. Objects<br />" + "<br />D. tinyint";
     qOnebutton.textContent = "A. String";
     qOnebutton.className = "q-btn";
     qTwobutton.textContent = "B. Boolean";
@@ -134,33 +138,34 @@ function questionThree() {
     questionContainerE3.appendChild(qFourbutton);
 
     qOnebutton.addEventListener("click", function () {
+        quizEl.textContent = "Incorrect";
+        quizEl.style.visibility = "visible";
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
-            recordScore();
         }
-        questionFour();
     });
     qTwobutton.addEventListener("click", function () {
+        quizEl.textContent = "Incorrect";
+        quizEl.style.visibility = "visible";
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
-            recordScore();
         }
-        questionFour();
     });
     qThreebutton.addEventListener("click", function () {
+        quizEl.textContent = "Incorrect";
+        quizEl.style.visibility = "visible";
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
-            recordScore();
         }
-        questionFour();
     });
     qFourbutton.addEventListener("click", questionFour);
 }
 
 function questionFour() {
+    quizEl.style.visibility = "hidden";
     questionNum++;
     console.log(questionNum);
     questionContainerE3.style.visibility = "hidden";
@@ -170,7 +175,6 @@ function questionFour() {
     var qThreebutton = document.createElement("button");
     var qFourbutton = document.createElement("button");
     quizTitleEl.textContent = "Question #4. Which of the following is not a event listener?"
-    //quizEl.innerHTML = "A. Mouseout<br />" + "<br />B. Click<br />" + "<br />C. Mouseover<br />" + "<br />D. All are valid";
 
     qOnebutton.textContent = "A. String";
     qOnebutton.className = "q-btn";
@@ -187,36 +191,39 @@ function questionFour() {
     questionContainerE4.appendChild(qFourbutton);
 
     qOnebutton.addEventListener("click", function () {
+        quizEl.textContent = "Incorrect";
+        quizEl.style.visibility = "visible";
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
-            recordScore();
         }
-        recordScore(timeLeft);
+        recordScore();
     });
     qTwobutton.addEventListener("click", function () {
+        quizEl.textContent = "Incorrect";
+        quizEl.style.visibility = "visible";
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
-            recordScore();
         }
-        recordScore(timeLeft);
+        recordScore();
     });
     qThreebutton.addEventListener("click", function () {
+        quizEl.textContent = "Incorrect";
+        quizEl.style.visibility = "visible";
         timeLeft = timeLeft - 10;
         if (timeLeft < 0) {
             timeLeft = 0;
-            recordScore();
         }
-        recordScore(timeLeft);
+        recordScore();
     });
     qFourbutton.addEventListener("click", function () {
-        recordScore(timeLeft);
+        recordScore();
     });
 
 }
 
-function recordScore(timeLeft) {
+function recordScore() {
     questionNum++;
     questionContainerEl.style.visibility = "hidden";
     questionContainerE2.style.visibility = "hidden";
@@ -232,22 +239,32 @@ function recordScore(timeLeft) {
 }
 
 function saveLeaderboard() {
-    openScore();
+    
+    window.open("highscore.html", "_self");
     var tempLeader = JSON.parse(localStorage.getItem("leaderboard")) || [];
     tempLeader.push(leaderboard);
     localStorage.setItem("leaderboard", JSON.stringify(tempLeader));
     console.log(tempLeader);
 }
 
+function printLeaderboard(){
+    var printScoreList = localStorage.getItem("leaderboard") || [];
+    printScoreList = JSON.parse(printScoreList);
+    for (var i = 0; i < printScoreList.length; i++){
+        if (scoreList === null){
+            return false;
+        }
+        var newUl = document.createElement("ul");
+        scoreList.appendChild(newUl);
+        newUl.textContent = printScoreList[i].initals + printScoreList[i].score;
+    }
+}
+
 var loadLeaderboard = function() {
     var highScore = JSON.parse(localStorage.getItem("leaderboard")) || [];
     console.log(highScore);
-}
-
-function openScore (){
-    window.open("highscore.html", "_self");
+    printLeaderboard();
 }
 
 btn.addEventListener("click", countdown);
 loadLeaderboard();
-
