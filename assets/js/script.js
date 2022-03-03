@@ -1,5 +1,5 @@
 
-var timeLeft = 6;
+var timeLeft = 60;
 var questionNum = 0;
 var finalScore = 0;
 var leaderboard = {};
@@ -9,7 +9,7 @@ var quizEl = document.getElementById('quiz');
 var quizTitleEl = document.getElementById("question-title");
 var btn = document.getElementById("btn");
 var questionResponse = document.getElementById("question-answer");
-var scoreList = document.getElementById("scoreList")
+var scoreList = document.getElementById("scoreList");
 var questionContainerEl = document.createElement("li");
 var questionContainerE2 = document.createElement("li");
 var questionContainerE3 = document.createElement("li");
@@ -20,7 +20,7 @@ var scoreListEl = document.createElement("li");
 function countdown() {
     questionOne();
 
-    btn.style.visibility = "hidden";
+    btn.remove();
     quizEl.style.visibility = "hidden";
     var timeInterval = setInterval(function () {
         timerEl.textContent = "time: " + timeLeft;
@@ -31,11 +31,12 @@ function countdown() {
             recordScore(timeLeft);
             clearInterval(timeInterval);
         }
-        timeLeft--;
+        //timeLeft--;
     }, 1000)
 }
 
 function questionOne() {
+    //var questionContainerEl = document.createElement("li");
     questionContainerEl.className = "qBox";
     var qOnebutton = document.createElement("button");
     var qTwobutton = document.createElement("button");
@@ -51,7 +52,7 @@ function questionOne() {
     qThreebutton.className = "q-btn";
     qFourbutton.textContent = "D. ##";
     qFourbutton.className = "q-btn";
-    document.body.appendChild(questionContainerEl);
+    questionResponse.appendChild(questionContainerEl);
     questionContainerEl.appendChild(qOnebutton);
     questionContainerEl.appendChild(qTwobutton);
     questionContainerEl.appendChild(qThreebutton);
@@ -87,17 +88,18 @@ function questionOne() {
 function questionTwo() {
     quizEl.style.visibility = "hidden";
     questionNum++;
-    console.log(questionNum);
-    questionContainerEl.style.visibility = "hidden";
+    questionContainerEl.remove();
+    //questionContainerEl.style.visibility = "hidden";
+    //var questionContainerE2 = document.createElement("li");
     questionContainerE2.className = "qBox";
     var qOnebutton = document.createElement("button");
     var qTwobutton = document.createElement("button");
-    quizTitleEl.textContent = "Question #2. In js, it is not required to declare the variable before it is called"
+    quizTitleEl.textContent = "Question #2. In js, it is not required to declare the variable before it is called."
     qOnebutton.textContent = "A. True";
     qOnebutton.className = "q-btn";
     qTwobutton.textContent = "B. False";
     qTwobutton.className = "q-btn";
-    document.body.appendChild(questionContainerE2);
+    questionResponse.appendChild(questionContainerE2);
     questionContainerE2.appendChild(qOnebutton);
     questionContainerE2.appendChild(qTwobutton);
 
@@ -115,8 +117,7 @@ function questionTwo() {
 function questionThree() {
     quizEl.style.visibility = "hidden";
     questionNum++;
-    console.log(questionNum);
-    questionContainerE2.style.visibility = "hidden";
+    questionContainerE2.remove();
     questionContainerE3.className = "qBox";
     var qOnebutton = document.createElement("button");
     var qTwobutton = document.createElement("button");
@@ -131,7 +132,7 @@ function questionThree() {
     qThreebutton.className = "q-btn";
     qFourbutton.textContent = "D. tinyint";
     qFourbutton.className = "q-btn";
-    document.body.appendChild(questionContainerE3);
+    questionResponse.appendChild(questionContainerE3);
     questionContainerE3.appendChild(qOnebutton);
     questionContainerE3.appendChild(qTwobutton);
     questionContainerE3.appendChild(qThreebutton);
@@ -167,8 +168,7 @@ function questionThree() {
 function questionFour() {
     quizEl.style.visibility = "hidden";
     questionNum++;
-    console.log(questionNum);
-    questionContainerE3.style.visibility = "hidden";
+    questionContainerE3.remove();
     questionContainerE4.className = "qBox";
     var qOnebutton = document.createElement("button");
     var qTwobutton = document.createElement("button");
@@ -184,7 +184,7 @@ function questionFour() {
     qThreebutton.className = "q-btn";
     qFourbutton.textContent = "D. All are valid";
     qFourbutton.className = "q-btn";
-    document.body.appendChild(questionContainerE4);
+    questionResponse.appendChild(questionContainerE4);
     questionContainerE4.appendChild(qOnebutton);
     questionContainerE4.appendChild(qTwobutton);
     questionContainerE4.appendChild(qThreebutton);
@@ -225,16 +225,11 @@ function questionFour() {
 
 function recordScore() {
     questionNum++;
-    questionContainerEl.style.visibility = "hidden";
-    questionContainerE2.style.visibility = "hidden";
-    questionContainerE3.style.visibility = "hidden";
-    questionContainerE4.style.visibility = "hidden";
+    questionContainerE4.remove();
     quizTitleEl.textContent = "GAME OVER";
     quizEl.textContent = timeLeft;
-    
     leaderboard.initals = window.prompt("Initals");
     leaderboard.score = timeLeft;
-    console.log(leaderboard);
     saveLeaderboard();
 }
 
@@ -248,8 +243,8 @@ function saveLeaderboard() {
 }
 
 function printLeaderboard(){
-    var printScoreList = localStorage.getItem("leaderboard") || [];
-    printScoreList = JSON.parse(printScoreList);
+    var printScoreList = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    //printScoreList = JSON.parse(printScoreList);
     for (var i = 0; i < printScoreList.length; i++){
         if (scoreList === null){
             return false;
@@ -262,7 +257,6 @@ function printLeaderboard(){
 
 var loadLeaderboard = function() {
     var highScore = JSON.parse(localStorage.getItem("leaderboard")) || [];
-    console.log(highScore);
     printLeaderboard();
 }
 
