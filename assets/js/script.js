@@ -31,7 +31,7 @@ function countdown() {
             recordScore(timeLeft);
             clearInterval(timeInterval);
         }
-        //timeLeft--;
+        timeLeft--;
     }, 1000)
 }
 
@@ -228,7 +228,7 @@ function recordScore() {
     questionContainerE4.remove();
     quizTitleEl.textContent = "GAME OVER";
     quizEl.textContent = timeLeft;
-    leaderboard.initals = window.prompt("Initals");
+    leaderboard.initials = window.prompt("initials");
     leaderboard.score = timeLeft;
     saveLeaderboard();
 }
@@ -251,7 +251,7 @@ function printLeaderboard(){
         }
         var newUl = document.createElement("ul");
         scoreList.appendChild(newUl);
-        newUl.textContent = printScoreList[i].initals + printScoreList[i].score;
+        newUl.textContent = printScoreList[i].initials + printScoreList[i].score;
     }
 }
 
