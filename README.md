@@ -7,7 +7,7 @@ A webite that will prompt the user to start a timed quiz and after completing th
 ## Built With
 * HTML
 * CSS
-* JAVA
+* JAVASCRIPT
 
 
 ## Website
