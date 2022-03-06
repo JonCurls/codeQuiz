@@ -16,10 +16,21 @@ header {
 .page-title {
     display: flex;
     flex-wrap: wrap;
+    color: blue; 
+    font-size: 64px; 
+    line-height: 64px; 
+    margin: 0 0 0; 
+    padding: 20px 30px; 
+    text-align: center; 
+    text-transform: uppercase;
+    border-bottom: blue 5px dotted;
+    border-radius: 5px;
     justify-content: center;
+}
+
+.highscore, a , .takeQuiz {
+    text-decoration: none;
     color: black;
-    width: 100%;
-    align-items: center;
 }
 
 .qAnswer {
@@ -35,7 +46,8 @@ header {
     flex-wrap: wrap;
     justify-content: space-around;
     width: 100%;
-    border: black 2px solid;
+    color: blue;
+    font-size: 30px;
 }
 
 .btn {
@@ -60,4 +72,8 @@ header {
     justify-content: center;
     flex-direction: column;
     padding: 0;
+    text-align: center; 
+    text-transform: uppercase;
+    color: blue;
+    font-size: 30px;
 }

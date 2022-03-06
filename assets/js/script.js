@@ -16,12 +16,14 @@ var questionContainerE3 = document.createElement("li");
 var questionContainerE4 = document.createElement("li");
 var scoreListEl = document.createElement("li");
 
-//Click event to start
+
 function countdown() {
+    //Calls question 1
     questionOne();
 
     btn.remove();
     quizEl.style.visibility = "hidden";
+    //Starts timer
     var timeInterval = setInterval(function () {
         timerEl.textContent = "time: " + timeLeft;
         if (questionNum ===4) {
@@ -34,9 +36,8 @@ function countdown() {
         timeLeft--;
     }, 1000)
 }
-
+//Question 1
 function questionOne() {
-    //var questionContainerEl = document.createElement("li");
     questionContainerEl.className = "qBox";
     var qOnebutton = document.createElement("button");
     var qTwobutton = document.createElement("button");
@@ -57,7 +58,7 @@ function questionOne() {
     questionContainerEl.appendChild(qTwobutton);
     questionContainerEl.appendChild(qThreebutton);
     questionContainerEl.appendChild(qFourbutton);
-    
+    //Incorrect answer
     qOnebutton.addEventListener("click", function () {
         quizEl.textContent = "Incorrect";
         quizEl.style.visibility = "visible";
@@ -66,7 +67,9 @@ function questionOne() {
             timeLeft = 0;
         }
     });
+    //Correct answer
     qTwobutton.addEventListener("click", questionTwo);
+    //Incorrect answer
     qThreebutton.addEventListener("click", function () {
         quizEl.textContent = "Incorrect";
         quizEl.style.visibility = "visible";
@@ -75,6 +78,7 @@ function questionOne() {
             timeLeft = 0;
         }
     });
+    //Incorrect answer
     qFourbutton.addEventListener("click", function () {
         quizEl.textContent = "Incorrect";
         quizEl.style.visibility = "visible";
@@ -84,16 +88,15 @@ function questionOne() {
         }
     });
 }
-
+//Question 2
 function questionTwo() {
     quizEl.style.visibility = "hidden";
     questionNum++;
     questionContainerEl.remove();
-    //questionContainerEl.style.visibility = "hidden";
-    //var questionContainerE2 = document.createElement("li");
     questionContainerE2.className = "qBox";
     var qOnebutton = document.createElement("button");
     var qTwobutton = document.createElement("button");
+
     quizTitleEl.textContent = "Question #2. In js, it is not required to declare the variable before it is called."
     qOnebutton.textContent = "A. True";
     qOnebutton.className = "q-btn";
@@ -102,7 +105,7 @@ function questionTwo() {
     questionResponse.appendChild(questionContainerE2);
     questionContainerE2.appendChild(qOnebutton);
     questionContainerE2.appendChild(qTwobutton);
-
+    //Incorrect answer
     qOnebutton.addEventListener("click", function () {
         quizEl.textContent = "Incorrect";
         quizEl.style.visibility = "visible";
@@ -111,9 +114,10 @@ function questionTwo() {
             timeLeft = 0;
         }
     });
+    //Correct answer
     qTwobutton.addEventListener("click", questionThree);
 }
-
+//Question 3
 function questionThree() {
     quizEl.style.visibility = "hidden";
     questionNum++;
@@ -123,6 +127,7 @@ function questionThree() {
     var qTwobutton = document.createElement("button");
     var qThreebutton = document.createElement("button");
     var qFourbutton = document.createElement("button");
+
     quizTitleEl.textContent = "Question #3. Common js data types include all but which of the following?"
     qOnebutton.textContent = "A. String";
     qOnebutton.className = "q-btn";
@@ -137,7 +142,7 @@ function questionThree() {
     questionContainerE3.appendChild(qTwobutton);
     questionContainerE3.appendChild(qThreebutton);
     questionContainerE3.appendChild(qFourbutton);
-
+    //Incorrect answer
     qOnebutton.addEventListener("click", function () {
         quizEl.textContent = "Incorrect";
         quizEl.style.visibility = "visible";
@@ -146,6 +151,7 @@ function questionThree() {
             timeLeft = 0;
         }
     });
+    //Incorrect answer
     qTwobutton.addEventListener("click", function () {
         quizEl.textContent = "Incorrect";
         quizEl.style.visibility = "visible";
@@ -154,6 +160,7 @@ function questionThree() {
             timeLeft = 0;
         }
     });
+    //Incorrect answer
     qThreebutton.addEventListener("click", function () {
         quizEl.textContent = "Incorrect";
         quizEl.style.visibility = "visible";
@@ -162,9 +169,10 @@ function questionThree() {
             timeLeft = 0;
         }
     });
+    //Correct answer
     qFourbutton.addEventListener("click", questionFour);
 }
-
+//Question 4
 function questionFour() {
     quizEl.style.visibility = "hidden";
     questionNum++;
@@ -174,8 +182,8 @@ function questionFour() {
     var qTwobutton = document.createElement("button");
     var qThreebutton = document.createElement("button");
     var qFourbutton = document.createElement("button");
-    quizTitleEl.textContent = "Question #4. Which of the following is not a event listener?"
 
+    quizTitleEl.textContent = "Question #4. Which of the following is not a event listener?"
     qOnebutton.textContent = "A. String";
     qOnebutton.className = "q-btn";
     qTwobutton.textContent = "B. Click";
@@ -189,7 +197,7 @@ function questionFour() {
     questionContainerE4.appendChild(qTwobutton);
     questionContainerE4.appendChild(qThreebutton);
     questionContainerE4.appendChild(qFourbutton);
-
+    //Incorrect answer
     qOnebutton.addEventListener("click", function () {
         quizEl.textContent = "Incorrect";
         quizEl.style.visibility = "visible";
@@ -199,6 +207,7 @@ function questionFour() {
         }
         recordScore();
     });
+    //Incorrect answer
     qTwobutton.addEventListener("click", function () {
         quizEl.textContent = "Incorrect";
         quizEl.style.visibility = "visible";
@@ -208,6 +217,7 @@ function questionFour() {
         }
         recordScore();
     });
+    //Incorrect answer
     qThreebutton.addEventListener("click", function () {
         quizEl.textContent = "Incorrect";
         quizEl.style.visibility = "visible";
@@ -217,34 +227,42 @@ function questionFour() {
         }
         recordScore();
     });
+    //Correct answer
     qFourbutton.addEventListener("click", function () {
         recordScore();
     });
 
 }
-
+//Collects score and initials
 function recordScore() {
     questionNum++;
     questionContainerE4.remove();
     quizTitleEl.textContent = "GAME OVER";
     quizEl.textContent = timeLeft;
     leaderboard.initials = window.prompt("initials");
+    if (leaderboard.initials === null) {
+        window.open("highscore.html", "_self");
+        return;
+    }
+    if (leaderboard.initials.length === 0) {
+        alert("please enter your initials.");
+        leaderboard.initials = window.prompt("initials");
+    }
+    
     leaderboard.score = timeLeft;
     saveLeaderboard();
 }
-
+//Saves score and initials to localStorage
 function saveLeaderboard() {
-    
     window.open("highscore.html", "_self");
     var tempLeader = JSON.parse(localStorage.getItem("leaderboard")) || [];
     tempLeader.push(leaderboard);
     localStorage.setItem("leaderboard", JSON.stringify(tempLeader));
     console.log(tempLeader);
 }
-
+//Displays scores and initials from localStorage
 function printLeaderboard(){
     var printScoreList = JSON.parse(localStorage.getItem("leaderboard")) || [];
-    //printScoreList = JSON.parse(printScoreList);
     for (var i = 0; i < printScoreList.length; i++){
         if (scoreList === null){
             return false;
@@ -254,11 +272,11 @@ function printLeaderboard(){
         newUl.textContent = printScoreList[i].initials + printScoreList[i].score;
     }
 }
-
+//Loads scores and initials on page load
 var loadLeaderboard = function() {
-    var highScore = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    JSON.parse(localStorage.getItem("leaderboard")) || [];
     printLeaderboard();
 }
-
+//Click to start quiz
 btn.addEventListener("click", countdown);
 loadLeaderboard();
