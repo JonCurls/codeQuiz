@@ -7,7 +7,7 @@ var leaderboard = {};
 var timerEl = document.getElementById("timer");
 var quizEl = document.getElementById('quiz');
 var quizTitleEl = document.getElementById("question-title");
-var btn = document.getElementById("btn");
+var btn = document.querySelector("#btn");
 var questionResponse = document.getElementById("question-answer");
 var scoreList = document.getElementById("scoreList");
 var questionContainerEl = document.createElement("li");
@@ -277,6 +277,7 @@ var loadLeaderboard = function() {
     JSON.parse(localStorage.getItem("leaderboard")) || [];
     printLeaderboard();
 }
+loadLeaderboard();
 //Click to start quiz
 btn.addEventListener("click", countdown);
-loadLeaderboard();
+
