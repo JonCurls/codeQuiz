@@ -1,4 +1,3 @@
-
 var timeLeft = 60;
 var questionNum = 0;
 var finalScore = 0;
